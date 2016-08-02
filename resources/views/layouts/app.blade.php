@@ -125,7 +125,7 @@
 
                         $('#RightTerminal').terminal(function(command, term) 
                             {},
-                            { prompt:'', name: 'shellOutput', greetings: false }
+                            { prompt:'', name: 'shellOutput', greetings: false, enabled: false }
                         );
 
                         // $('.terminal-output').eq(0).html('<br><code id="shellIn" style="float:right;padding:10px;font-size:28px;">INPUT</code><br><br><br>');
