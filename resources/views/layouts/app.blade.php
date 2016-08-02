@@ -26,6 +26,10 @@
         .fa-btn {
             margin-right: 6px;
         }
+
+        .navbar {
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body id="app-layout">
@@ -100,10 +104,10 @@
                             if (command == 'python') {
                                 $('.terminal-output').eq(1).first().next().append("<div>End Of File (EOF). Empty string style platform.<br><pexpect.pxssh.pxssh object at 0x10b38ff90><br>command: /usr/bin/ssh<br>args: ['/usr/bin/ssh', '-q', '-l', 'root', '127.0.0.1']<br>buffer (last 100 chars): ''<br>before (last 100 chars): ''<br>after: <class 'pexpect.exceptions.EOF'><br>match: None<br>match_index: None<br>exitstatus: None<br>flag_eof: True<br></div>");
                             }
-                        }, { prompt: '>>> ', name: 'shellInput' });
+                        }, { prompt: '>>> ', name: 'shellInput', greetings: false });
                         $('#RightTerminal').terminal(function(command, term) {
 
-                        });
+                        },  { prompt: '', name: 'shellOutput', greetings: false, enabled: false });
 
                         $('.terminal-output').eq(0).html('<br><code id="shellIn" style="font-size:36px;">INPUT</code><br><br>');
                         $('.terminal-output').eq(1).html('<br><code id="shellOut" style="font-size:36px;">OUTPUT</code><br><br>');
