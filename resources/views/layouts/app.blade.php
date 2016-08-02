@@ -101,16 +101,35 @@
                          });
 
                         $("#LeftTerminal").terminal(function(command, term) {
-                            if (command == 'python') {
-                                $('.terminal-output').eq(1).first().next().append("<div>End Of File (EOF). Empty string style platform.<br><pexpect.pxssh.pxssh object at 0x10b38ff90><br>command: /usr/bin/ssh<br>args: ['/usr/bin/ssh', '-q', '-l', 'root', '127.0.0.1']<br>buffer (last 100 chars): ''<br>before (last 100 chars): ''<br>after: <class 'pexpect.exceptions.EOF'><br>match: None<br>match_index: None<br>exitstatus: None<br>flag_eof: True<br></div>");
+
+                            if(command == 'initialize'){
+                                $('.terminal-output').eq(1).first().next().append("<div><br><h4><div style='color:darkgrey;'>black hat</div><div style='color:white;'>white collar</div><div style='color:lightgray;'>gray matter</h4><br><h3 style='color:red;'>GOOGLE THE ANSWERS TO ALL YOUR QUESTIONS.<br><br></h3><h4>this is the end. || the beginning.</h4><br><br><br><h4>IF YOU STILL DON'T GET IT TYPE 'help' AT THE PROMPT IN THE LEFT TERMINAL WINDOW.</h4></div>");
                             }
-                        }, { prompt: '>>> ', name: 'shellInput', greetings: false });
-                        $('#RightTerminal').terminal(function(command, term) {
 
-                        },  { prompt: '', name: 'shellOutput', greetings: false, enabled: false });
+                            if(command == 'help'){
+                                $('.terminal-output').eq(1).first().next().append("<div><br><h4>stop being a bozo and start helping yourself.</h4></div>");
+                            }
+                                     
+                        }, { prompt: '>>> ', name: 'shellInput', greetings: false, 
+                            
+                            login: function(user, password, callback) {
+                                if (user == 'root' && password == 'secrets') {
+                                    $('.terminal-output').eq(1).first().next().append("<div><br><h4>hello "+user+", welcome to Dojo YOLO.<br><br>TYPE 'initialize' TO BEGIN.</h4></div>");
+                                    callback('AUTHENTICATION TOKEN');
+                                } else {
+                                    callback(null);
+                                }
+                            }  
 
-                        $('.terminal-output').eq(0).html('<br><code id="shellIn" style="font-size:36px;">INPUT</code><br><br>');
-                        $('.terminal-output').eq(1).html('<br><code id="shellOut" style="font-size:36px;">OUTPUT</code><br><br>');
+                        });
+
+                        $('#RightTerminal').terminal(function(command, term) 
+                            {},
+                            { prompt:'', name: 'shellOutput', greetings: false }
+                        );
+
+                        // $('.terminal-output').eq(0).html('<br><code id="shellIn" style="float:right;padding:10px;font-size:28px;">INPUT</code><br><br><br>');
+                        // $('.terminal-output').eq(1).html('<br><code id="shellOut" style="float:right;padding:10px;font-size:28px;">OUTPUT</code><br><br><br>');
                         // $('.terminal-output').css('text-align', 'center');
                     });
         });
