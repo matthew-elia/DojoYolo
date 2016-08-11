@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+	Auth::logout();
     return view('welcome');
 });
 
